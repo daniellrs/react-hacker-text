@@ -4,6 +4,8 @@
 
 [![NPM](https://img.shields.io/npm/v/react-hacker-text.svg)](https://www.npmjs.com/package/react-hacker-text) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
+![](https://github.com/daniellrs/react-hacker-text/blob/master/assets/example1.gif)
+
 ## Install
 
 ```bash
