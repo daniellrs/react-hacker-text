@@ -5,8 +5,8 @@ let textLength = 0;
 let timeoutWrite = undefined;
 const defaultOptions = {changes:4, speed:50}
 
-const hackerTextFunction = (text, setState, options={}) => {
-  if( !setState ) return
+const hackerTextFunction = (text, callback, options={}) => {
+  if( !callback ) return
   if( timeoutWrite ) clearTimeout( timeoutWrite );
   
   if( textLength > text.length ) {
@@ -18,10 +18,10 @@ const hackerTextFunction = (text, setState, options={}) => {
   options = {...defaultOptions, ...options}
   if( !changingLetter[textIndex] ) changingLetter[textIndex] = {index: textIndex, changes: 0, original: text[textIndex]}
 
-  verifyLettersToChange( text, setState, options )
+  verifyLettersToChange( text, callback, options )
 }
 
-const verifyLettersToChange = ( text, setState, options ) => {
+const verifyLettersToChange = ( text, callback, options ) => {
   let hackerText = ''
   for (let index = 0; index < text.length; index++) {
     const char = text[index]
@@ -32,7 +32,9 @@ const verifyLettersToChange = ( text, setState, options ) => {
     }
 
     changingLetter[index].changes++
-    if( changingLetter[index].changes >= options.changes ) {
+    const isFinishedChanges = changingLetter[index].changes >= options.changes
+
+    if( isFinishedChanges ) {
       changingLetter[index].showingLetter = changingLetter[index].original
       hackerText += changingLetter[index].original
     }
@@ -43,8 +45,8 @@ const verifyLettersToChange = ( text, setState, options ) => {
     }
   }
 
-  setState( hackerText );
-  timeoutWrite = setTimeout( () => verifyLettersToChange( text, setState, options ), options.speed )
+  callback( hackerText );
+  timeoutWrite = setTimeout( () => verifyLettersToChange( text, callback, options ), options.speed )
 }
 
 const verifyConsistency = ( text ) => {

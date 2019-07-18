@@ -9,8 +9,8 @@ export default class App extends Component {
   render () {
     return (
       <div>
-        <HackerText text='Olá. ' />
-        <HackerText text='Estamos em 2019.' delay={1500} />
+        <HackerText text='Hello!' element='h2' speed={80} />
+        <HackerText text='react-hacker-text 😄🎉' element='h2' speed={80} delay={2000} characters='numbers' />
 
         <br />
 
@@ -19,9 +19,10 @@ export default class App extends Component {
           onChange={e => 
             hackerTextFunction( 
               e.target.value, 
-              value => this.setState( {text: value} )
+              value => this.setState( {text: value} ),
+              {changes: 10, speed: 100, characters: 'symbols'}
             )
-          } 
+          }
         />
       </div>
     )
