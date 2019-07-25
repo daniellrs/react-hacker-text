@@ -17,7 +17,7 @@ export default class HackerText extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    const { text, delay } = this.props
+    const { text, delay=0 } = this.props
     if( text !== prevProps.text ) {
       this.changingLetter = {index: 0, changes: 0}
       this.timeoutDelay = setTimeout( () => {
